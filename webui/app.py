@@ -61,6 +61,7 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
     with st.spinner("Setting up... This might take a few minutes"):
         raw_w = pickle.load(open(os.path.join(DATA_ROOT, "sg2latents.pickle"), "rb"))
         raw_w['Latent'][0][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
+        raw_w['Latent'][1][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
 
         # raw_TSNE = np.load(os.path.join(DATA_ROOT, 'TSNE.npy'))  # We are picking images here by index instead
         raw_attr = np.load(os.path.join(DATA_ROOT, 'attributes.npy'))
@@ -77,6 +78,15 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
         all_attr[0][5][0] = 0      #Beard
         all_attr[0][6][0] = 25     #Age
         all_attr[0][7][0] = 1      #Expresion
+
+        all_attr[1][0][0] = 0      #Gender
+        all_attr[1][1][0] = 0      #Glasses
+        all_attr[1][2][0] = -19.5   #Yaw
+        all_attr[1][3][0] = -9.5   #Pitch
+        all_attr[1][4][0] = 0.05   #Baldness
+        all_attr[1][5][0] = 0      #Beard
+        all_attr[1][6][0] = 25     #Age
+        all_attr[1][7][0] = 1      #Expresion
 
         all_lights = raw_lights[all_idx]
 
