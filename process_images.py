@@ -2,6 +2,7 @@ from dprapi import DPRAPI
 from s2eapi import S2EAPI
 from azureapi import AzureAPI
 from decouple import config
+import argparse
 
 AZURE_KEY = config('AZURE_KEY')
 AZURE_ENDPOINT = config('AZURE_ENDPOINT')
@@ -32,4 +33,18 @@ def process_images(
 
     if not skip_azure:
         azure_api.infer_face_features()
-    
+
+def main():
+    parser = argparse.ArgumentParser(description='Project real-world images into StyleGAN2 latent space')
+    parser.add_argument('--skip_projection', type=bool, default=False)
+    parser.add_argument('--skip_dpr', type=bool, default=False)
+    parser.add_argument('--skip_azure', type=bool, default=False)
+    args = parser.parse_args()
+    process_images(
+        skip_projection=args.skip_projection,
+        skip_dpr=args.skip_dpr,
+        skip_azure=args.skip_azure
+    )
+
+if __name__ == '__main__':
+    main()
