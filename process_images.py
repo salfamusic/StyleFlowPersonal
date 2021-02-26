@@ -1,6 +1,6 @@
-import DPRAPI from dprapi
-import S2EAPI from s2eapi
-import AzureAPI from azure
+from dprapi import DPRAPI
+from s2eapi import S2EAPI
+from azure import AzureAPI
 
 
 def process_images(
