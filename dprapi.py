@@ -73,7 +73,7 @@ class DPRAPI:
             sh = self.predict_light_on_image(images[i])
             lights[i] = sh.detach().cpu().numpy()
 
-        np.save(self.output_dir,  lights)
+        np.save(self.output_dir+'/lights.npy',  lights)
 
 
     def predict_light_on_image(self, image_url):

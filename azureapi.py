@@ -78,5 +78,5 @@ class AzureAPI:
                 print('Age: ', face.face_attributes.age)
                 print('Smile: ', face.face_attributes.smile)
 
-        np.save(self.output_dir + '/attributes',  attrs)
+        np.save(self.output_dir + '/attributes.npy',  attrs)
 
