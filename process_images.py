@@ -14,8 +14,8 @@ def process_images(
     raw_dir = './work_dir/raw',
     aligned_dir = './work_dir/aligned',
     results_dir = './work_dir/results',
-    network_pkl_gcloud_id = '1xAL82ELuRciaYR5PDQYaH2MHy6-UbkY-',
-    vgg_pkl_gcloud_id = '1ofUti9VTZf2zqqDocuXqGrrZHI2JKh8p',
+    network_pkl_gcloud_id = '1Zw7tT4FmgnVvysPAAcycjQqWkoDPHZt5',
+    vgg_pkl_gcloud_id = '1bUvV_UtYZ8rqMO5eC2l-1gL_vbJ-79ys',
     skip_projection = False,
     skip_dpr = False,
     skip_azure = False):
