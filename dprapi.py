@@ -34,13 +34,13 @@ class DPRAPI:
         x, z = np.meshgrid(x, z)
 
         mag = np.sqrt(x**2 + z**2)
-        valid = mag <=1
-        y = -np.sqrt(1 - (x*valid)**2 - (z*valid)**2)
-        x = x * valid
-        y = y * valid
-        z = z * valid
-        normal = np.concatenate((x[...,None], y[...,None], z[...,None]), axis=2)
-        normal = np.reshape(normal, (-1, 3))
+        self.valid = mag <=1
+        y = -np.sqrt(1 - (x*self.valid)**2 - (z*self.valid)**2)
+        x = x * self.valid
+        y = y * self.valid
+        z = z * self.valid
+        self.normal = np.concatenate((x[...,None], y[...,None], z[...,None]), axis=2)
+        self.normal = np.reshape(self.normal, (-1, 3))
         #-----------------------------------------------------------------
 
         modelFolder = 'trained_model/'
@@ -53,8 +53,6 @@ class DPRAPI:
         my_network.cuda()
         my_network.train(False)
 
-
-        lightFolder = 'data/example_light/'
         saveFolder = self.output_dir
         if not os.path.exists(saveFolder):
           os.makedirs(saveFolder)
@@ -89,6 +87,8 @@ class DPRAPI:
         inputL = inputL[None,None,...]
         inputL = Variable(torch.from_numpy(inputL).cuda())
 
+        lightFolder = 'data/example_light/'
+
         for i in range(1):
             sh = np.loadtxt(os.path.join(lightFolder, 'rotate_light_{:02d}.txt'.format(i)))
             sh = sh[0:9]
@@ -96,15 +96,15 @@ class DPRAPI:
 
             # rendering half-sphere
             sh = np.squeeze(sh)
-            shading = get_shading(normal, sh)
+            shading = get_shading(self.normal, sh)
             value = np.percentile(shading, 95)
             ind = shading > value
             shading[ind] = value
             shading = (shading - np.min(shading))/(np.max(shading) - np.min(shading))
             shading = (shading *255.0).astype(np.uint8)
             shading = np.reshape(shading, (256, 256))
-            shading = shading * valid
-            cv2.imwrite(os.path.join(saveFolder, \
+            shading = shading * self.valid
+            cv2.imwrite(os.path.join(self.output_dir, \
                     'light_{:02d}.png'.format(i)), shading)
 
             #----------------------------------------------
@@ -112,5 +112,5 @@ class DPRAPI:
             #----------------------------------------------
             sh = np.reshape(sh, (1,9,1,1)).astype(np.float32)
             sh = Variable(torch.from_numpy(sh).cuda())
-            outputImg, _, outputSH, _  = my_network(inputL, sh, 0)
+            outputImg, _, outputSH, _  = self.my_network(inputL, sh, 0)
             return outputSH
