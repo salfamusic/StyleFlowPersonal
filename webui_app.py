@@ -34,8 +34,8 @@ Go wild!
 
 
 
-DATA_ROOT = "/data"
-WORK_DIR_ROOT = "/work_dir/results"
+DATA_ROOT = "data"
+WORK_DIR_ROOT = "work_dir/results"
 HASH_FUNCS = {tf.Session: id,
               torch.nn.Module: id,
               Build_model: lambda _ : None,
