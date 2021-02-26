@@ -126,7 +126,7 @@ def make_slider(name, min_value=0.0, max_value=1.0, step=0.1, **kwargs):
 @st.cache(allow_output_mutation=True, hash_funcs={dict: id}, show_spinner=False)
 def get_idx2init(raw_w):
     print(type(raw_w))
-    idx2init = {i: np.array(raw_w)[i] for i in range(0, len(raw_w))}
+    idx2init = {i: np.array(raw_w)[i] for i in range(0, len(np.array(raw_w)))}
     return idx2init
 
 @st.cache(hash_funcs=HASH_FUNCS)
