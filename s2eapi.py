@@ -79,9 +79,14 @@ class S2EAPI:
     proj.set_network(Gs)
 
     src_files = sorted([os.path.join(self.src_dir, f) for f in os.listdir(self.src_dir) if f[0] not in '._'])
+
+    projected_latents = []
+
     for src_file in src_files:
-        project_image(proj, src_file, self.dst_dir, self.tmp_dir, video=False)
+        projected_latents.append(project_image(proj, src_file, self.dst_dir, self.tmp_dir, video=False))
         shutil.rmtree(self.tmp_dir)
+
+    np.save(self.dst_dir+'/projected.npy', np.asarray(projected_latents))
 
 def make_gcloud_link(id):
   return f"https://drive.google.com/u/0/uc?id={id}&export=download"
