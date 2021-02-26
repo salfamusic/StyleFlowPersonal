@@ -1,6 +1,6 @@
 from dprapi import DPRAPI
 from s2eapi import S2EAPI
-from azure import AzureAPI
+from azureapi import AzureAPI
 
 
 def process_images(
