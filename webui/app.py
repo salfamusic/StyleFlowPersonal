@@ -36,6 +36,7 @@ Go wild!
 
 
 DATA_ROOT = "../data"
+WORK_DIR_ROOT = "../work_dir/results"
 HASH_FUNCS = {tf.Session: id,
               torch.nn.Module: id,
               Build_model: lambda _ : None,
@@ -48,6 +49,13 @@ all_idx = np.array([0, 1, 2, 5, 25, 28, 16, 32, 33, 34, 55, 75, 79, 162, 177, 19
 
 EPS = 1e-3  # arbitrary positive value
 
+def add_layer(latents):
+    deeper = []
+
+    for latent in latents:
+        deeper.append([latent])
+
+    return np.asarray(deeper)
 
 class State:  # Simple dirty hack for maintaining state
     prev_attr = None
@@ -62,6 +70,15 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
         raw_w = pickle.load(open(os.path.join(DATA_ROOT, "sg2latents.pickle"), "rb"))
         raw_w['Latent'][0][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
         raw_w['Latent'][1][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
+
+        latents = add_layer(np.load(open(os.path.join(WORK_DIR_ROOT, "projected.npy"), "rb")))
+        attributes = np.load(open(os.path.join(WORK_DIR_ROOT, "attributes.npy"), "rb"))
+        lights = np.load(open(os.path.join(WORK_DIR_ROOT, "lights.npy"), "rb"))
+
+        raw_latents = {
+            'Latent': latents
+        }
+
 
         # raw_TSNE = np.load(os.path.join(DATA_ROOT, 'TSNE.npy'))  # We are picking images here by index instead
         raw_attr = np.load(os.path.join(DATA_ROOT, 'attributes.npy'))
@@ -99,7 +116,7 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
 
         pre_lighting = [light0, light1, light2, light3, light4, light5]
 
-        st.data = dict(raw_w=raw_w, all_w=all_w, all_attr=all_attr, all_lights=all_lights,
+        st.data = dict(raw_w=raw_latents, all_w=latents, all_attr=attributes, all_lights=lights,
                              pre_lighting=pre_lighting)
 
 
