@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c4421688-fc4e-41f0-886f-57681d2f6eba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/azure.py" beforeDir="false" afterPath="$PROJECT_DIR$/azure.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +236,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587032056825</updated>
-      <workItem from="1614372405917" duration="3272000" />
+      <workItem from="1614372405917" duration="3446000" />
     </task>
     <servers />
   </component>
