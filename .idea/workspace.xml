@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c4421688-fc4e-41f0-886f-57681d2f6eba" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webui/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/webui/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webui_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/webui_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,43 +27,6 @@
         <option value="Jupyter Notebook" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>self.array_source</find>
-      <find>attr_current</find>
-      <find>pre_lighting_distance</find>
-      <find>light_invert_slide_to_real</find>
-      <find>light_degree</find>
-      <find>smile</find>
-      <find>real_value</find>
-      <find>rest</find>
-      <find>update_Gt</find>
-      <find>update_GT_scene_image</find>
-      <find>array_light</find>
-      <find>light_current_list</find>
-      <find>array_source</find>
-      <find>q_array</find>
-      <find>png</find>
-      <find>fws</find>
-      <find>cv2.circle</find>
-      <find>interval_dic</find>
-      <find>Gender</find>
-      <find>Yaw</find>
-      <find>setFormAlignment</find>
-      <find>formlayout1</find>
-      <find>label_minimum</find>
-      <find>sample_num</find>
-      <find>keep_indexes</find>
-      <find>w_current</find>
-      <find>all_w</find>
-      <find>nvcc</find>
-      <find>print</find>
-      <find>glob</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>expression</replace>
-    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -236,7 +199,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1587032056825</updated>
-      <workItem from="1614372405917" duration="7692000" />
+      <workItem from="1614372405917" duration="7789000" />
     </task>
     <servers />
   </component>
