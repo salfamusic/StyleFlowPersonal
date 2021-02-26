@@ -48,13 +48,41 @@ all_idx = np.array([0, 1, 2, 5, 25, 28, 16, 32, 33, 34, 55, 75, 79, 162, 177, 19
 
 EPS = 1e-3  # arbitrary positive value
 
-def add_layer(latents):
-    deeper = []
+def set_all_idx(latents):
+    global all_idx
+    i = 0
+
+    idx = []
 
     for latent in latents:
-        deeper.append([latent])
+        idx.append(i)
 
-    return np.asarray(deeper)
+    all_idx = np.array(idx)
+
+
+def add_to_raw_w(raw_w, latents):
+    i = 0
+
+    for latent in latents:
+        raw_w['Latent'][i][0] = latent
+        i += 1
+
+def add_to_raw_attr(raw_attr, attrs):
+    i = 0
+
+    for attr in attrs:
+        raw_attr[i] = attr
+        i += 1
+
+def add_to_raw_lights(raw_lights, lights):
+    i = 0
+
+    for light in lights:
+        raw_lights[i] = light
+        i += 1
+
+
+
 
 class State:  # Simple dirty hack for maintaining state
     prev_attr = None
@@ -66,44 +94,23 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
 
     st.state = State()
     with st.spinner("Setting up... This might take a few minutes"):
-        raw_w = pickle.load(open(os.path.join(DATA_ROOT, "sg2latents.pickle"), "rb"))
-        raw_w['Latent'][0][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
-        raw_w['Latent'][1][0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
-
-        latents = add_layer(np.load(open(os.path.join(WORK_DIR_ROOT, "projected.npy"), "rb")))
-        attributes = np.load(open(os.path.join(WORK_DIR_ROOT, "attributes.npy"), "rb"))
-        lights = np.load(open(os.path.join(WORK_DIR_ROOT, "lights.npy"), "rb"))
-
-        raw_latents = {
-            'Latent': latents
-        }
-
 
         # raw_TSNE = np.load(os.path.join(DATA_ROOT, 'TSNE.npy'))  # We are picking images here by index instead
+        raw_w = pickle.load(open(os.path.join(DATA_ROOT, "sg2latents.pickle"), "rb"))
         raw_attr = np.load(os.path.join(DATA_ROOT, 'attributes.npy'))
         raw_lights = np.load(os.path.join(DATA_ROOT, 'light.npy'))
 
+        latents = np.load(open(os.path.join(WORK_DIR_ROOT, "projected.npy"), "rb"))
+        attributes = np.load(open(os.path.join(WORK_DIR_ROOT, "attributes.npy"), "rb"))
+        lights = np.load(open(os.path.join(WORK_DIR_ROOT, "lights.npy"), "rb"))
+
+        set_all_idx(latents)
+        add_to_raw_w(raw_w, latents)
+        add_to_raw_attr(raw_attr, attributes)
+        add_to_raw_lights(raw_lights, lights)
+
         all_w = np.array(raw_w['Latent'])[all_idx]
         all_attr = raw_attr[all_idx]
-
-        all_attr[0][0][0] = 0      #Gender
-        all_attr[0][1][0] = 0      #Glasses
-        all_attr[0][2][0] = -19.5   #Yaw
-        all_attr[0][3][0] = -9.5   #Pitch
-        all_attr[0][4][0] = 0.05   #Baldness
-        all_attr[0][5][0] = 0      #Beard
-        all_attr[0][6][0] = 25     #Age
-        all_attr[0][7][0] = 1      #Expresion
-
-        all_attr[1][0][0] = 0      #Gender
-        all_attr[1][1][0] = 0      #Glasses
-        all_attr[1][2][0] = -19.5   #Yaw
-        all_attr[1][3][0] = -9.5   #Pitch
-        all_attr[1][4][0] = 0.05   #Baldness
-        all_attr[1][5][0] = 0      #Beard
-        all_attr[1][6][0] = 25     #Age
-        all_attr[1][7][0] = 1      #Expresion
-
         all_lights = raw_lights[all_idx]
 
         light0 = torch.from_numpy(raw_lights[8]).float()
@@ -115,7 +122,7 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
 
         pre_lighting = [light0, light1, light2, light3, light4, light5]
 
-        st.data = dict(raw_w=raw_latents, all_w=latents, all_attr=attributes, all_lights=lights,
+        st.data = dict(raw_w=raw_w, all_w=all_w, all_attr=all_attr, all_lights=all_lights,
                              pre_lighting=pre_lighting)
 
 
@@ -125,8 +132,8 @@ def make_slider(name, min_value=0.0, max_value=1.0, step=0.1, **kwargs):
 @st.cache(allow_output_mutation=True, hash_funcs={dict: id}, show_spinner=False)
 def get_idx2init(raw_w):
     print(type(raw_w))
-    #idx2init = {i: np.array(raw_w)[i] for i in range(0, np.array(raw_w).size)}
-    return raw_w
+    idx2init = {i: np.array(raw_w['Latent'])[i] for i in all_idx}
+    return idx2init
 
 @st.cache(hash_funcs=HASH_FUNCS)
 def init_model():
