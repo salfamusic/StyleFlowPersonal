@@ -11,9 +11,9 @@ def process_images(
     projected_dir = './work_dir/projected',
     lights_dir = './work_dir/lights',
     azure_dir = './work_dir/azure',
-    netowrk_pkl = '1xAL82ELuRciaYR5PDQYaH2MHy6-UbkY-',
-    vgg_pkl = '1ofUti9VTZf2zqqDocuXqGrrZHI2JKh8p'):
-    s2e_api = S2EAPI(raw_dir, aligned_dir, projected_dir, netowrk_pkl, vgg_pkl)
+    network_pkl_gcloud_id = '1xAL82ELuRciaYR5PDQYaH2MHy6-UbkY-',
+    vgg_pkl_gcloud_id = '1ofUti9VTZf2zqqDocuXqGrrZHI2JKh8p'):
+    s2e_api = S2EAPI(raw_dir, aligned_dir, projected_dir, network_pkl_gcloud_id, vgg_pkl_gcloud_id)
     dpr_api = DPRAPI(aligned_dir, lights_dir)
     azure_api = AzureAPI(aligned_dir, azure_dir, azure_key, azure_endpoint)
 
