@@ -1,11 +1,15 @@
 from dprapi import DPRAPI
 from s2eapi import S2EAPI
 from azureapi import AzureAPI
+from decouple import config
+
+AZURE_KEY = config('AZURE_KEY')
+AZURE_ENDPOINT = config('AZURE_ENDPOINT')
 
 
 def process_images(
-    azure_key, 
-    azure_endpoint,
+    azure_key = AZURE_KEY,
+    azure_endpoint = AZURE_ENDPOINT,
     raw_dir = './work_dir/raw',
     aligned_dir = './work_dir/aligned',
     results_dir = './work_dir/results',

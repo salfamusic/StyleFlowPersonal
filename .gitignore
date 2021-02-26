@@ -5,3 +5,4 @@ webui/.stylegan2-cache/
 *.pyc
 dnnlib/tflib/_cudacache/
 /venv/
+.env
