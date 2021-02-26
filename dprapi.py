@@ -66,12 +66,13 @@ class DPRAPI:
     def predict_light(self):
         images = [f for f in os.listdir(self.images_dir) if f[0] not in '._']
         lights = np.zeros([len(images),  1,  9,  1,  1])
-
+        i = 0
         for img_name in images:
             raw_img_path = os.path.join(self.images_dir, img_name)
-            print('predicting light for image: ',  images[i])
-            sh = self.predict_light_on_image(images[i])
+            print('predicting light for image: ',  raw_img_path)
+            sh = self.predict_light_on_image(raw_img_path)
             lights[i] = sh.detach().cpu().numpy()
+            i += 1
 
         np.save(self.output_dir+'/lights.npy',  lights)
 
