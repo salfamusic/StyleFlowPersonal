@@ -73,8 +73,7 @@ class S2EAPI:
         num_steps             = self.num_steps,
         initial_learning_rate = self.initial_learning_rate,
         initial_noise_factor  = self.initial_noise_factor,
-        verbose               = self.verbose,
-        dlatent_avg_fname     = self.dlatent_avg_fname
+        verbose               = self.verbose
     )
     proj.set_network(Gs)
 
