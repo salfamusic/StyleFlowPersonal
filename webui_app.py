@@ -70,14 +70,14 @@ def add_to_raw_attr(raw_attr, attrs):
     i = 0
 
     for attr in attrs:
-        raw_attr[i][0] = attr
+        raw_attr[i] = attr
         i += 1
 
 def add_to_raw_lights(raw_lights, lights):
     i = 0
 
     for light in lights:
-        raw_lights[i][0] = light
+        raw_lights[i] = light
         i += 1
 
 
