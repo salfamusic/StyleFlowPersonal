@@ -104,7 +104,7 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
         attributes = np.load(open(os.path.join(WORK_DIR_ROOT, "attributes.npy"), "rb"))
         lights = np.load(open(os.path.join(WORK_DIR_ROOT, "lights.npy"), "rb"))
 
-        latents[0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
+        # latents[0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
 
         set_all_idx(latents)
         add_to_raw_w(raw_w, latents)
