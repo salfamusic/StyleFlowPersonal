@@ -254,9 +254,9 @@ def main():
 
     light_names = ['Left->Right', 'Right->Left', 'Down->Up', 'Up->Down', 'No light', 'Front light']
 
-    att_min = {'Gender': 0, 'Glasses': 0, 'Yaw': -20, 'Pitch': -20, 'Baldness': 0, 'Beard': 0.0, 'Age': 0,
-               'Expression': 0}
-    att_max = {'Gender': 1, 'Glasses': 1, 'Yaw': 20, 'Pitch': 20, 'Baldness': 1, 'Beard': 1, 'Age': 65, 'Expression': 1}
+    att_min = {'Gender': -5, 'Glasses': -5, 'Yaw': -100, 'Pitch': -100, 'Baldness': -5, 'Beard': -5.0, 'Age': 0,
+               'Expression': -5}
+    att_max = {'Gender': 5, 'Glasses': 5, 'Yaw': 100, 'Pitch': 100, 'Baldness': 5, 'Beard': 5, 'Age': 65, 'Expression': 5}
 
 
     with st.spinner("Setting up... This might take a few minutes... Please wait!"):
