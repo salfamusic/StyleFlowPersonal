@@ -278,6 +278,7 @@ def main():
         st.state.prev_lights = lights_selected.ravel().copy()
         st.state.z_current = copy.deepcopy(z_selected)
         st.state.w_current = torch.Tensor(w_selected)
+        print(w_selected)
         st.state.w_prev = torch.Tensor(w_selected)
         st.state.light_current = torch.Tensor(lights_selected).float()
 
