@@ -27,7 +27,6 @@ class S2EAPI:
     raw_dir,
     src_dir,
     dst_dir,
-    network_pkl_gcloud_id,
     vgg16_pkl_gcloud_id,
     tmp_dir='.stylegan2-tmp',
     num_steps=1000,
@@ -39,7 +38,6 @@ class S2EAPI:
     self.raw_dir = raw_dir
     self.src_dir = src_dir
     self.dst_dir = dst_dir
-    self.network_pkl_gcloud_id = network_pkl_gcloud_id
     self.vgg16_pkl_gcloud_id = vgg16_pkl_gcloud_id
     self.tmp_dir = tmp_dir
     self.num_steps = num_steps
@@ -64,10 +62,9 @@ class S2EAPI:
             image_align(raw_img_path, aligned_face_path, face_landmarks)
 
   def project(self):
-    network_pkl = make_gcloud_link(self.network_pkl_gcloud_id)
     vgg16_pkl = make_gcloud_link(self.vgg16_pkl_gcloud_id)
-    print('Loading networks from "%s"...' % network_pkl)
-    _G, _D, Gs = pretrained_networks.load_networks(network_pkl)
+    print('Loading networks from "%s"...' % 'gdrive:networks/stylegan2-ffhq-config-f.pkl')
+    _G, _D, Gs = pretrained_networks.load_networks('gdrive:networks/stylegan2-ffhq-config-f.pkl')
     proj = projector.Projector(
         vgg16_pkl             = vgg16_pkl,
         num_steps             = self.num_steps,
