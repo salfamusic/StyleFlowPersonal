@@ -62,6 +62,7 @@ def add_to_raw_w(raw_w, latents):
     i = 0
 
     for latent in latents:
+        print(latent)
         raw_w['Latent'][i][0] = latent
         i += 1
 
@@ -69,7 +70,6 @@ def add_to_raw_attr(raw_attr, attrs):
     i = 0
 
     for attr in attrs:
-        print(attr)
         raw_attr[i] = attr
         i += 1
 
