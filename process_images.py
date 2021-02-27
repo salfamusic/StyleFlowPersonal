@@ -18,7 +18,7 @@ def process_images(
     skip_projection = False,
     skip_dpr = False,
     skip_azure = False):
-    s2e_api = S2EAPI(raw_dir, aligned_dir, results_dir, network_pkl_gcloud_id, vgg_pkl_gcloud_id)
+    s2e_api = S2EAPI(raw_dir, aligned_dir, results_dir, vgg_pkl_gcloud_id)
     dpr_api = DPRAPI(aligned_dir, results_dir)
     azure_api = AzureAPI(aligned_dir, results_dir, azure_key, azure_endpoint)
 
