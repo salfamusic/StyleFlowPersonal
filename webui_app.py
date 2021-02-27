@@ -70,14 +70,14 @@ def add_to_raw_attr(raw_attr, attrs):
     i = 0
 
     for attr in attrs:
-        raw_attr[i] = attr
+        raw_attr[i][0] = attr
         i += 1
 
 def add_to_raw_lights(raw_lights, lights):
     i = 0
 
     for light in lights:
-        raw_lights[i] = light
+        raw_lights[i][0] = light
         i += 1
 
 
@@ -224,7 +224,8 @@ def is_new_idx_set(idx):
         st.state.first = False
         st.state.prev_idx = idx
         return True
-
+    print(idx)
+    print(st.state.prev_idx)
     if idx != st.state.prev_idx:
         st.state.prev_idx = idx
         return True
