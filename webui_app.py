@@ -42,7 +42,7 @@ HASH_FUNCS = {tf.Session: id,
               torch.Tensor: lambda x: x.cpu().numpy()}
 
 # Select images
-all_idx = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype='int')
+all_idx = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8], dtype='int')
 
 EPS = 1e-3  # arbitrary positive value
 
@@ -60,6 +60,12 @@ def set_all_idx(latents):
 
 def add_to_raw_w(raw_w, latents):
     i = 0
+
+    print(latents[0])
+    print('---')
+    print(latents[1])
+    print('---')
+    print(latents[2])
 
     for latent in latents:
         raw_w['Latent'][i][0] = latent
@@ -102,9 +108,7 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
         attributes = np.load(open(os.path.join(WORK_DIR_ROOT, "attributes.npy"), "rb"))
         lights = np.load(open(os.path.join(WORK_DIR_ROOT, "lights.npy"), "rb"))
 
-        # latents[0] = np.load(open(os.path.join(DATA_ROOT, "jk2_01.npy"), "rb"))
-
-        set_all_idx(latents)
+        # set_all_idx(latents)
         add_to_raw_w(raw_w, latents)
         add_to_raw_attr(raw_attr, attributes)
         add_to_raw_lights(raw_lights, lights)
@@ -121,6 +125,12 @@ if not hasattr(st, 'data'):  # Run only once. Save data globally
         light5 = torch.from_numpy(raw_lights[34]).float()
 
         pre_lighting = [light0, light1, light2, light3, light4, light5]
+
+        print(all_w[0])
+        print('---')
+        print(all_w[1])
+        print('---')
+        print(all_w[2])
 
         st.data = dict(raw_w=raw_w, all_w=all_w, all_attr=all_attr, all_lights=all_lights,
                              pre_lighting=pre_lighting)
