@@ -42,7 +42,7 @@ HASH_FUNCS = {tf.Session: id,
               torch.Tensor: lambda x: x.cpu().numpy()}
 
 # Select images
-all_idx = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], dtype='int')
+all_idx = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], dtype='int')
 
 EPS = 1e-3  # arbitrary positive value
 
@@ -69,6 +69,7 @@ def add_to_raw_attr(raw_attr, attrs):
     i = 0
 
     for attr in attrs:
+        print(attr)
         raw_attr[i] = attr
         i += 1
 
