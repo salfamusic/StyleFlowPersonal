@@ -61,6 +61,9 @@ def set_all_idx(latents):
 def add_to_raw_w(raw_w, latents):
     i = 0
 
+    print(latents[0])
+    print(latents[1])
+
     for latent in latents:
         raw_w['Latent'][i][0] = latent
         i += 1
