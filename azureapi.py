@@ -48,6 +48,7 @@ class AzureAPI:
                 print('No face detected from image: ',  format(os.path.basename(image)))
                 faceAttr = np.expand_dims(np.array([-1,  -1,  -1,  -1,  -1,  -1,  -1,  -1]),  axis = 1)
                 attrs[imageCounter] = faceAttr
+                imageCounter += 1
                 continue
 
             for face in detected_faces:
@@ -77,6 +78,7 @@ class AzureAPI:
                 print('beard:',  face.face_attributes.facial_hair.beard)
                 print('Age: ', face.face_attributes.age)
                 print('Smile: ', face.face_attributes.smile)
+                imageCounter += 1
 
         np.save(self.output_dir + '/attributes.npy',  attrs)
 
