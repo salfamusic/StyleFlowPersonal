@@ -42,9 +42,7 @@ HASH_FUNCS = {tf.Session: id,
               torch.Tensor: lambda x: x.cpu().numpy()}
 
 # Select images
-all_idx = np.array([0, 1, 2, 5, 25, 28, 16, 32, 33, 34, 55, 75, 79, 162, 177, 196, 160, 212, 246, 285, 300, 329, 362,
-                             369, 462, 460, 478, 551, 583, 643, 879, 852, 914, 999, 976, 627, 844, 237, 52, 301,
-                             599], dtype='int')
+all_idx = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], dtype='int')
 
 EPS = 1e-3  # arbitrary positive value
 
