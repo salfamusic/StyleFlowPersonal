@@ -42,7 +42,7 @@ HASH_FUNCS = {tf.Session: id,
               torch.Tensor: lambda x: x.cpu().numpy()}
 
 # Select images
-all_idx = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], dtype='int')
+all_idx = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], dtype='int')
 
 EPS = 1e-3  # arbitrary positive value
 
@@ -60,9 +60,6 @@ def set_all_idx(latents):
 
 def add_to_raw_w(raw_w, latents):
     i = 0
-
-    print(latents[0])
-    print(latents[1])
 
     for latent in latents:
         raw_w['Latent'][i][0] = latent
